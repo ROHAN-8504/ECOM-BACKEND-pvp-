@@ -5,6 +5,7 @@ const app=express();
 const port=3000
 
 app.use(cors())
+app.use(express.json())
 
 app.get('/',(req,res)=>{
  res.send('server is active')
@@ -17,6 +18,17 @@ app.get('/',(req,res)=>{
 app.get('/products',(req,res)=>{
 res.json(products)
 })
+
+app.post('/products',(req,res)=>{
+const {id,title,price,image}=req.body
+let newproduct={id,title,price,image}
+products.push(newproduct)
+res.json({msg:"product are saved"})
+})
+
+
+
+
 
 app.get('/users',(req,res)=>{
     res.json({
